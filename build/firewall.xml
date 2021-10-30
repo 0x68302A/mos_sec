@@ -1,0 +1,4 @@
+<target>
+        <details name="guest" os="debian"/>
+        <size free_space_mb="200" />
+</target>
