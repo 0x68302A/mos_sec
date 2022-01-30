@@ -1,5 +1,5 @@
 <target>
-	<build id="firewall" kernel="yes" rootfs="yes" distro="alpine" />
+	<build id="firewall" kernel="yes" rootfs="yes" distro="debian" />
         <details name="guest" />
         <size free_space_mb="200" />
 </target>
