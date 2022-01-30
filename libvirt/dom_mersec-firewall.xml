@@ -30,7 +30,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="mos_img_dir/mersec-firewall.img" />
+      <source file="mos_img_dir/mos_mersec_deb-firewall.img" />
       <target bus="ide" dev="hda" />
       <address bus="0" controller="0" target="0" type="drive" unit="0" />
     </disk>
