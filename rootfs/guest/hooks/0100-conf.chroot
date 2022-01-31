@@ -7,6 +7,11 @@ echo "user:user" | chpasswd
 
 chmod 0700 /etc/ssh/ssh_host_rsa_key
 
-chown -R user:user /home/user/*
+chown -R user:user /home/user/
 chmod -R 0755 /home/user
 
+export DEBIAN_FRONTEND=noninteractive
+sudo dpkg-reconfigure debconf -f noninteractive -p critical
+
+echo "force-confold" >> /etc/dpkg/dpkg.cfg
+echo "force-confdef" >> /etc/dpkg/dpkg.cfg
