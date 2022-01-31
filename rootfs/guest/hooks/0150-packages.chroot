@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ## Define Packages into groups, flexible
-PACKAGES_MOS="netscript rsync sudo iputils-ping tor proxychains4 openvpn resolvconf ssh tmux libc-bin"
+PACKAGES_MOS="ifupdown rsync sudo iputils-ping tor proxychains4 openvpn resolvconf ssh tmux libc-bin avahi-autoipd wpasupplicant"
 
 PACKAGES_USER="gawk firefox-esr wget curl git ssh net-tools htop nano vim zlib1g-dev"
 PACKAGES_XORG="xorg xserver-xorg xdg-utils libdbus-glib-1-2 libcanberra-gtk-module libcanberra-gtk3-module"

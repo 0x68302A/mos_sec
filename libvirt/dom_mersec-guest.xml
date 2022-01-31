@@ -6,7 +6,7 @@
   <os>
     <type arch="x86_64" machine="pc-i440fx-3.1">hvm</type>
     <kernel>mos_img_dir/bzImage</kernel>
-    <cmdline>root=/dev/sda1</cmdline>
+    <cmdline>root=/dev/sda1 ipv6.disable=1</cmdline>
     <boot dev="hd" />
   </os>
   <features>
