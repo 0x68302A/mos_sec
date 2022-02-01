@@ -1,13 +1,14 @@
-<domain type="qemu">
+<domain type="kvm">
   <name>mersec-guest</name>
-  <memory unit="KiB">2097152</memory>
-  <currentMemory unit="KiB">2097152</currentMemory>
-  <vcpu placement="static">2</vcpu>
+  <memory unit="MB">8512</memory>
+  <currentMemory unit="MB">8000</currentMemory>
+  <vcpu placement="static">8</vcpu>
   <os>
-    <type arch="x86_64" machine="pc-i440fx-3.1">hvm</type>
+    <type arch="x86_64" machine="pc-q35-5.2">hvm</type>
     <kernel>mos_img_dir/bzImage</kernel>
-    <cmdline>root=/dev/sda1 ipv6.disable=1</cmdline>
+    <cmdline>root=/dev/vda1</cmdline>
     <boot dev="hd" />
+    <bootmenu enable='yes'/>
   </os>
   <features>
     <acpi />
@@ -31,65 +32,101 @@
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
       <source file="mos_img_dir/mos_mersec_deb-guest.img" />
-      <target bus="ide" dev="hda" />
-      <address bus="0" controller="0" target="0" type="drive" unit="0" />
+      <target bus="virtio" dev="vda" />
     </disk>
-    <controller index="0" model="ich9-ehci1" type="usb">
-      <address bus="0x00" domain="0x0000" function="0x7" slot="0x05" type="pci" />
+    <controller type="usb" index="0" model="qemu-xhci" ports="15">
+      <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
     </controller>
-    <controller index="0" model="ich9-uhci1" type="usb">
-      <master startport="0" />
-      <address bus="0x00" domain="0x0000" function="0x0" multifunction="on" slot="0x05" type="pci" />
+    <controller type="sata" index="0">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1f" function="0x2"/>
     </controller>
-    <controller index="0" model="ich9-uhci2" type="usb">
-      <master startport="2" />
-      <address bus="0x00" domain="0x0000" function="0x1" slot="0x05" type="pci" />
+    <controller type="pci" index="0" model="pcie-root"/>
+    <controller type="pci" index="1" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="1" port="0x10"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0" multifunction="on"/>
     </controller>
-    <controller index="0" model="ich9-uhci3" type="usb">
-      <master startport="4" />
-      <address bus="0x00" domain="0x0000" function="0x2" slot="0x05" type="pci" />
+    <controller type="pci" index="2" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="2" port="0x11"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x1"/>
     </controller>
-    <controller index="0" model="pci-root" type="pci" />
-    <controller index="0" type="ide">
-      <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
+    <controller type="pci" index="3" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="3" port="0x12"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x2"/>
+    </controller>
+    <controller type="pci" index="4" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="4" port="0x13"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x3"/>
+    </controller>
+    <controller type="pci" index="5" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="5" port="0x14"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x4"/>
+    </controller>
+    <controller type="pci" index="6" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="6" port="0x15"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x5"/>
+    </controller>
+    <controller type="pci" index="7" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="7" port="0x16"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x6"/>
+    </controller>
+    <controller type="virtio-serial" index="0">
+      <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
     <interface type="bridge">
       <source bridge="mersec_priv" />
       <model type="e1000" />
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x03" type="pci" />
     </interface>
     <serial type="pty">
-      <target port="0" type="isa-serial">
-        <model name="isa-serial" />
+      <target type="isa-serial" port="0">
+        <model name="isa-serial"/>
       </target>
     </serial>
     <console type="pty">
-      <target port="0" type="serial" />
+      <target type="serial" port="0"/>
     </console>
-    <input bus="usb" type="tablet">
-      <address bus="0" port="1" type="usb" />
+    <channel type="unix">
+      <target type="virtio" name="org.qemu.guest_agent.0"/>
+      <address type="virtio-serial" controller="0" bus="0" port="1"/>
+    </channel>
+    <channel type="spicevmc">
+      <target type="virtio" name="com.redhat.spice.0"/>
+      <address type="virtio-serial" controller="0" bus="0" port="2"/>
+    </channel>
+    <input type="tablet" bus="usb">
+      <address type="usb" bus="0" port="1"/>
     </input>
-    <input bus="ps2" type="mouse" />
-    <input bus="ps2" type="keyboard" />
-    <graphics port="2001" type="spice">
-      <listen type="address" />
-      <image compression="off" />
+    <input type="mouse" bus="ps2"/>
+    <input type="keyboard" bus="ps2"/>
+    <graphics type="spice" autoport="yes">
+      <listen type="address"/>
+      <image compression="off"/>
     </graphics>
-    <sound model="ich6">
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x04" type="pci" />
+    <sound model="ich9">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0"/>
     </sound>
     <video>
-      <model heads="1" primary="yes" ram="65536" type="qxl" vgamem="16384" vram="65536" />
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x02" type="pci" />
+      <model type="qxl" ram="65536" vram="65536" vgamem="16384" heads="1" primary="yes"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
     </video>
     <redirdev bus="usb" type="spicevmc">
-      <address bus="0" port="2" type="usb" />
+      <address type="usb" bus="0" port="2"/>
     </redirdev>
     <redirdev bus="usb" type="spicevmc">
-      <address bus="0" port="3" type="usb" />
+      <address type="usb" bus="0" port="3"/>
     </redirdev>
     <memballoon model="virtio">
-      <address bus="0x00" domain="0x0000" function="0x0" slot="0x06" type="pci" />
+      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
     </memballoon>
+    <rng model="virtio">
+      <backend model="random">/dev/urandom</backend>
+      <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x0"/>
+    </rng>
   </devices>
 </domain>
