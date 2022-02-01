@@ -11,7 +11,7 @@ chown -R user:user /home/user/
 chmod -R 0755 /home/user
 
 export DEBIAN_FRONTEND=noninteractive
-sudo dpkg-reconfigure debconf -f noninteractive -p critical
+dpkg-reconfigure debconf -f noninteractive -p critical
 
 echo "force-confold" >> /etc/dpkg/dpkg.cfg
 echo "force-confdef" >> /etc/dpkg/dpkg.cfg
