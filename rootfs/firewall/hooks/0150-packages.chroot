@@ -3,8 +3,6 @@
 ## Define Packages into groups, flexible
 PACKAGES_MOS="apt-utils ifupdown rsync sudo iputils-ping tor resolvconf ssh locales"
 PACKAGES_USER="net-tools htop nano"
-PACKAGES_OFFSEC="netcat telnet nmap whois ruby ruby-dev libcrypt-ssleay-perl dnsutils jq"
-
 
 ## Install Packages
 chmod 1777 /tmp
