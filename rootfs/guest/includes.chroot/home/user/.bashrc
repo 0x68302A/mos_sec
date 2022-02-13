@@ -12,6 +12,10 @@ if [[ -z $TMUX ]] && [[ -n $SSH_TTY ]]; then
     exec tmux new-session -A -s MOS
 fi
 
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
