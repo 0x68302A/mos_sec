@@ -4,11 +4,14 @@
 PACKAGES_MOS="apt-utils ifupdown rsync sudo iputils-ping tor resolvconf ssh locales"
 PACKAGES_USER="net-tools htop nano"
 
-## Install Packages
 chmod 1777 /tmp
-dpkg --configure -a
+
+## Install Packages
+export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 apt update
-apt install -y $PACKAGES_MOS $PACKAGES_USER $PACKAGES_OFFSEC
+
+dpkg --configure -a
+apt install -o Dpkg::Options::="--force-confold" -y $PACKAGES_MOS $PACKAGES_USER $PACKAGES_OFFSEC
 
 ## Configure system-mos Packages
 systemctl -q enable tor
