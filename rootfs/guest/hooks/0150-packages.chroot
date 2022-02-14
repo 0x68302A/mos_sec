@@ -12,7 +12,7 @@ chmod 1777 /tmp
 
 apt update
 dpkg --configure -a
-apt install -y $PACKAGES_MOS $PACKAGES_USER $PACKAGES_XORG $PACKAGES_GRAPHICAL
+apt install -o Dpkg::Options::="--force-confold" --force-yes -y $PACKAGES_MOS $PACKAGES_USER $PACKAGES_XORG $PACKAGES_GRAPHICAL
 
 ## Configure system-mos Packages
 systemctl -q disable tor
