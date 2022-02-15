@@ -1,5 +1,5 @@
 <domain type="kvm">
-  <name>mersec_firewall</name>
+  <name>sec-firewall</name>
   <memory unit="MB">1024</memory>
   <currentMemory unit="MB">1024</currentMemory>
   <vcpu placement="static">2</vcpu>
@@ -30,7 +30,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="mos_img_dir/mos_mersec_deb-firewall.img" />
+      <source file="mos_img_dir/mos_sec-firewall.img" />
       <target bus="ide" dev="hda" />
       <address bus="0" controller="0" target="0" type="drive" unit="0" />
     </disk>
@@ -54,13 +54,13 @@
       <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
     </controller>
     <interface type="network">
-      <source network="mersec_pub" />
-      <target dev='mersec_pub-nic'/>
+      <source network="sec_pub" />
+      <target dev='sec_pub-nic'/>
       <model type="e1000" />
     </interface>
     <interface type="network">
-      <source network="mersec_priv" />
-      <target dev='mersec_priv-nic'/>
+      <source network="sec_priv" />
+      <target dev='sec_priv-nic'/>
       <model type="e1000" />
     </interface>
     <serial type="pty">

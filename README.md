@@ -1,22 +1,22 @@
-## `mos_mersec_deb` is a Family for `merOS-virt`
+## `mos_sec` is a Family for `merOS-virt`
 
 
 Based on **Debian**, **2 Targets** ( VMs ) comprised of a *whonix-like* <br> network configuration, provide a ***safe framework for research.***
 ___
 
-### `mos_mersec-firewall` :: Acts as a firewall VM- <br>
+### `mos_sec-firewall` :: Acts as a firewall VM- <br>
 
 In NAT connection with the host network, <br> 
  **accepts all** all `TCP 80, 443` connections. <br>
 
 Running only a `tor-daemon` with a **single open port,** <br> 
-it serves the isolated network `mos_mersec_priv`.
+it serves the isolated network `mos_sec_priv`.
 
 ___
 
-### `mos_mersec_deb-guest` :: Acts as a guest VM- <br>
+### `mos_sec-guest` :: Acts as a guest VM- <br>
 
-Bridged with `mos_mersec_deb-firewall`, <br> 
+Bridged with `mos_sec-firewall`, <br> 
 with a single SSH port exposed to the host,<br> 
 it allows for an configurable, accessible and disposable Target.<br>
 
@@ -27,7 +27,7 @@ and routing and firewall options by `nftables` (@ `hooks/*`)
 
 ---
 
-Connection to the `guest` can be achieved with `-c|--connect` and/ or `--run` `mos_mersec_deb-guest`<br>
+Connection to the `guest` can be achieved with `-c|--connect` and/ or `--run` `mos_sec-guest`<br>
 
 Internet access from within- <br>
 can be gained with `torsocks` via `proxychains.` <br>

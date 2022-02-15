@@ -1,5 +1,5 @@
 <domain type="kvm">
-  <name>mersec-guest</name>
+  <name>sec-guest</name>
   <memory unit="MB">8512</memory>
   <currentMemory unit="MB">8000</currentMemory>
   <vcpu placement="static">8</vcpu>
@@ -31,7 +31,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="mos_img_dir/mos_mersec_deb-guest.img" />
+      <source file="mos_img_dir/mos_sec-guest.img" />
       <target bus="virtio" dev="vda" />
     </disk>
     <controller type="usb" index="0" model="qemu-xhci" ports="15">
@@ -80,7 +80,7 @@
       <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
     <interface type="bridge">
-      <source bridge="mersec_priv" />
+      <source bridge="sec_priv" />
       <model type="e1000" />
     </interface>
     <serial type="pty">
