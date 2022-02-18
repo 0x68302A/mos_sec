@@ -27,10 +27,10 @@ and routing and firewall options by `nftables` (@ `hooks/*`)
 
 ---
 
-Connection to the `guest` can be achieved with `-c|--connect` and/ or `--run` `mos_sec-guest`<br>
+Connection to the `guest` ( `mos_sec-guest` ) can be achieved with `-c|--connect` and/ or `--run` `mos_sec-guest`<br>
 
 Internet access from within- <br>
-can be gained with `torsocks` via `proxychains.` <br>
+can be gained with `torsocks` or `proxychains.` <br>
 
 These packages come **preinstalled** and **preconfigured** with the right `HOST:PORT` options. <br>
 
