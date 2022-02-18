@@ -1,11 +1,11 @@
 <domain type="kvm">
-  <name>sec-guest</name>
+  <name>$TARGET_FULL_ID</name>
   <memory unit="MB">8512</memory>
   <currentMemory unit="MB">8000</currentMemory>
   <vcpu placement="static">8</vcpu>
   <os>
     <type arch="x86_64" machine="pc-q35-5.2">hvm</type>
-    <kernel>mos_img_dir/bzImage</kernel>
+    <kernel>$KERNEL_IMG</kernel>
     <cmdline>root=/dev/vda1</cmdline>
     <boot dev="hd" />
     <bootmenu enable='yes'/>
@@ -31,7 +31,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="mos_img_dir/mos_sec-guest.img" />
+      <source file="$TARGET_ROOTFS_IMG" />
       <target bus="virtio" dev="vda" />
     </disk>
     <controller type="usb" index="0" model="qemu-xhci" ports="15">

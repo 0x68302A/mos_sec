@@ -1,11 +1,11 @@
 <domain type="kvm">
-  <name>sec-firewall</name>
+  <name>$TARGET_FULL_ID</name>
   <memory unit="MB">1024</memory>
   <currentMemory unit="MB">1024</currentMemory>
   <vcpu placement="static">2</vcpu>
   <os>
     <type arch="x86_64" machine="pc-i440fx-5.2">hvm</type>
-    <kernel>mos_img_dir/bzImage</kernel>
+    <kernel>$KERNEL_IMG</kernel>
     <cmdline>root=/dev/sda1 ipv6.disable=1 loglevel=7</cmdline>
     <boot dev="hd" />
   </os>
@@ -30,7 +30,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk device="disk" type="file">
       <driver name="qemu" type="qcow2" />
-      <source file="mos_img_dir/mos_sec-firewall.img" />
+      <source file="$TARGET_ROOTFS_IMG" />
       <target bus="ide" dev="hda" />
       <address bus="0" controller="0" target="0" type="drive" unit="0" />
     </disk>
