@@ -80,8 +80,9 @@
       <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
     </controller>
     <interface type="bridge">
-      <source bridge="sec_priv" />
+      <source bridge="mos_sec-priv" />
       <model type="e1000" />
+	 <target dev='mos_sgpr.nic'/>
     </interface>
     <serial type="pty">
       <target type="isa-serial" port="0">

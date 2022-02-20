@@ -54,13 +54,13 @@
       <address bus="0x00" domain="0x0000" function="0x1" slot="0x01" type="pci" />
     </controller>
     <interface type="network">
-      <source network="sec_pub" />
-      <target dev='sec_pub-nic'/>
+      <source network="mos_sec-pub" />
+      <target dev='mos_sfpu.nic'/>
       <model type="e1000" />
     </interface>
     <interface type="network">
-      <source network="sec_priv" />
-      <target dev='sec_priv-nic'/>
+      <source network="mos_sec-priv" />
+      <target dev='mos_sfsp.nic'/>
       <model type="e1000" />
     </interface>
     <serial type="pty">

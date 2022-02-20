@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export default_gw=$(echo $(ip route | grep default) | cut -d " " -f 3)
-export iface_nic="sec_pub"
+export iface_nic="mos_sec-pub"
 
 ## Create Base for our firewall
 sudo nft "flush ruleset"

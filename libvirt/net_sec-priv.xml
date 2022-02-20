@@ -1,7 +1,7 @@
 <network ipv6='no'>
-  <name>sec_priv</name>
+  <name>$NETWORK_FULL_ID</name>
   <forward mode='open'/>
-  <bridge name='sec_priv' stp='on' delay='0'/>
+  <bridge name='$NETWORK_FULL_ID' stp='on' delay='0'/>
   <ip address='10.0.4.1' netmask='255.255.255.0'>  
   </ip>
   <dns enable='no'/>
