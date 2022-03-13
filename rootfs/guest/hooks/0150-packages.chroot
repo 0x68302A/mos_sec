@@ -9,12 +9,24 @@ PACKAGES_GRAPHICAL="xfce4 xfce4-goodies xpra python3-dbus dbus-x11"
 
 chmod 1777 /tmp
 
-## Install Packages
-apt update
+## Fix dnsresolv bug
+rm /etc/resolv.com
+ln -s /run/resolvconf/resolv.conf /etc/resolv.conf
 
+## Configure dpkg
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 dpkg --configure -a
-apt install -o Dpkg::Options::="--force-confold" -y $PACKAGES_MOS $PACKAGES_USER $PACKAGES_XORG $PACKAGES_GRAPHICAL
+
+## Update & Install packages
+apt update && apt install -o Dpkg::Options::="--force-confold" -y \
+$PACKAGES_MOS $PACKAGES_USER $PACKAGES_XORG $PACKAGES_GRAPHICAL
 
 ## Configure system-mos Packages
 systemctl -q disable tor
+systemctl -q disable openvpn
+
+## Get, configure, and symlink tor-browser
+wget -nc https://github.com/TheTorProject/gettorbrowser/releases/download/torbrowser-release/tor-browser-linux64-9.0.4_en-US.tar.xz \
+-P /opt/mos-tbb_patch.d/
+
+cd /opt/mos-tbb_patch.d/ && ./mos-tbb_patch.sh && cd ~

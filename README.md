@@ -32,7 +32,12 @@ Connection to the `guest` ( `mos_sec-guest` ) can be achieved with `-c|--connect
 Internet access from within- <br>
 can be gained with `torsocks` or `proxychains.` <br>
 
-These packages come **preinstalled** and **preconfigured** with the right `HOST:PORT` options. <br>
+These packages come **preinstalled** and **preconfigured** with the right networking options. <br>
+
+**ex.** `meros --run mos_sec-guest konsole` - <br>
+
+`tor-browser-bundle` is a configured package, and can be run, upon shell connection to the *guest* with <br>
+`start-tor-browser` *As seen in ./pkg and ./rootfs/guest/hooks/0150-packages.chroot:29*
 
 ___
 
